@@ -7,5 +7,5 @@ data class WeatherModel(
     val condition: String,
     val icon: String,
     val averagetemp: String,
-    val hours: String,
+    val hours: String
 )

@@ -1,9 +1,11 @@
 package com.example.weatherappjc.screen
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.DragInteraction
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,15 +28,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.weatherappjc.data.WeatherModel
 import com.example.weatherappjc.ui.theme.BackMain
+import java.lang.Math.floor
 
 @Composable
-fun MainList(list: List<WeatherModel>, currentDay: MutableState<WeatherModel>){
+fun MainList(list: List<WeatherModel>, currentDay: MutableState<WeatherModel>) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -81,20 +85,28 @@ fun ListItem(item: WeatherModel, currentDay: MutableState<WeatherModel>) {
                     color = Color.White
                 )
             }
-            Text(
-                text = item.currentTemp.ifEmpty { "${item.averagetemp}" },
-                color = Color.White,
-                style = TextStyle(fontSize = 25.sp)
-            )
-            AsyncImage(
-                model = "https:${item.icon}",
-                contentDescription = "image5",
-                modifier = Modifier
-                    .padding(
-                        end = 8.dp
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Text(
+                    modifier = Modifier.padding(end = 32.dp),
+                    text = item.currentTemp.ifEmpty { "${item.averagetemp}" },
+                    color = Color.White,
+                    style = TextStyle(fontSize = 25.sp)
+                )
+                AsyncImage(
+                    model = "https:${item.icon}",
+                    contentDescription = "image5",
+                    modifier = Modifier
+                        .padding(
+                            end = 16.dp
+                        )
+                        .size(35.dp),
+
                     )
-                    .size(35.dp)
-            )
+            }
+
         }
     }
 }

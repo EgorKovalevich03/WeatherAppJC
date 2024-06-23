@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
                     })
                 }
 
-                getData("Luninets", this, daysList, currentDay)
+                getData("Lakhva", this, daysList, currentDay)
                 Image(
                     painter = painterResource(
                         id = R.drawable.weather_bg
